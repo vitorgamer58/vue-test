@@ -100,40 +100,23 @@ describe('Leiloeiro deve comunicar os valores de menor e maior lance', () => {
 
     await flushPromises()
     const menorLance = wrapper.find('.menor-lance')
-    expect(menorLance).toBeTruthy()
     expect(menorLance.element.textContent).toContain(`Menor lance: R$ ${lances[0].valor}`)
   })
   test('Leiloeiro deve criar lance', async () => {
-    expect(true).toBe(true)
-    // TODO Testar o método onNovoLance para aumentar o testcoverage
-    
-    /* getLeilao.mockResolvedValueOnce(leilao)
+    getLeilao.mockResolvedValueOnce(leilao)
     getLances.mockResolvedValueOnce(lances)
-    createLance.mockResolvedValueOnce()
+    createLance.mockResolvedValueOnce({
+      valor: 1200,
+      data: '2021-08-09T21:41:36.449Z',
+      leilao_id: 2,
+      id: {}
+    })
     const wrapper = mount(Leiloeiro, {
       propsData: { id: 1, lanceMinimo: 1000 }
     })
-    const input = wrapper.findComponent(Lance).find('input')
-    input.setValue(1025)
-    wrapper.trigger('submit')
+    wrapper.findComponent(Lance).vm.$emit('novo-lance', 1025)
     await wrapper.vm.$nextTick() // Espera que o DOM tenha sido atualizado
     const maiorLance = wrapper.find('.maior-lance')
-    expect(maiorLance).toContain(`Maior lance: R$ 1025`) */
-
-    /* const input = wrapper.find('input')
-    input.setValue(1025)
-    wrapper.trigger('submit') // Ativa o submit do formulário
-
-    await flushPromises()
-    await wrapper.vm.$nextTick() // Espera que o DOM tenha sido atualizado
-
-    const maiorLance = wrapper.find('.maior-lance')
-    expect(maiorLance.element.textContent).toContain(`Maior lance: R$ 1025`) */
-
-    /* wrapper.vm.onNovoLance(1025) // Chama o método onNovoLance
-    await flushPromises()
-    await wrapper.vm.$nextTick() // Espera que o DOM tenha sido atualizado
-    const maiorLance = wrapper.find('.maior-lance')
-    expect(maiorLance.element.textContent).toContain('Maior lance: R$ 1025') */
+    expect(maiorLance.element.textContent).toContain('Maior lance: R$ 1025')
   })
 })
